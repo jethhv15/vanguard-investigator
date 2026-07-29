@@ -11,23 +11,35 @@ relationship_builder_run() {
 
     total=$(evidence_registry_count)
 
-    #
-    # Temporary sequential relationship.
-    # This will evolve into rule-based relationship generation.
-    #
-
     local i=1
 
     while [ "$i" -lt "$total" ]
     do
 
-        local source
-        local target
+        local source_id
+        local target_id
 
-        source=$(evidence_registry_get_id "$i")
-        target=$(evidence_registry_get_id "$((i + 1))")
+        local source_metric
+        local target_metric
 
-        evidence_link_add "$source" "precedes" "$target"
+        local relation
+
+        source_id=$(evidence_registry_get_id "$i")
+        target_id=$(evidence_registry_get_id "$((i + 1))")
+
+        source_metric=$(evidence_registry_get_metric "$i")
+        target_metric=$(evidence_registry_get_metric "$((i + 1))")
+
+        relation=$(relationship_rule_apply "$source_metric" "$target_metric")
+
+        if [ -n "$relation" ]; then
+
+            evidence_link_add \
+                "$source_id" \
+                "$relation" \
+                "$target_id"
+
+        fi
 
         i=$((i + 1))
 

@@ -2,24 +2,55 @@
 
 #
 # Vanguard Investigator
-# Evidence Registry
+# Evidence Builder API
 #
 
 EVIDENCE_COUNT=0
 
-create_evidence() {
+evidence_begin() {
 
-    local subsystem="$1"
-    local metric="$2"
-    local value="$3"
-    local unit="$4"
+    EVIDENCE_SUBSYSTEM=""
+    EVIDENCE_METRIC=""
+    EVIDENCE_VALUE=""
+    EVIDENCE_UNIT=""
+
+}
+
+evidence_set() {
+
+    local key="$1"
+    local value="$2"
+
+    case "$key" in
+
+        subsystem)
+            EVIDENCE_SUBSYSTEM="$value"
+            ;;
+
+        metric)
+            EVIDENCE_METRIC="$value"
+            ;;
+
+        value)
+            EVIDENCE_VALUE="$value"
+            ;;
+
+        unit)
+            EVIDENCE_UNIT="$value"
+            ;;
+
+    esac
+
+}
+
+evidence_commit() {
 
     EVIDENCE_COUNT=$((EVIDENCE_COUNT + 1))
 
-    eval "EVIDENCE_${EVIDENCE_COUNT}_SUBSYSTEM='$subsystem'"
-    eval "EVIDENCE_${EVIDENCE_COUNT}_METRIC='$metric'"
-    eval "EVIDENCE_${EVIDENCE_COUNT}_VALUE='$value'"
-    eval "EVIDENCE_${EVIDENCE_COUNT}_UNIT='$unit'"
+    eval "EVIDENCE_${EVIDENCE_COUNT}_SUBSYSTEM=\"\$EVIDENCE_SUBSYSTEM\""
+    eval "EVIDENCE_${EVIDENCE_COUNT}_METRIC=\"\$EVIDENCE_METRIC\""
+    eval "EVIDENCE_${EVIDENCE_COUNT}_VALUE=\"\$EVIDENCE_VALUE\""
+    eval "EVIDENCE_${EVIDENCE_COUNT}_UNIT=\"\$EVIDENCE_UNIT\""
 
 }
 

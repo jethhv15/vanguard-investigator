@@ -27,6 +27,7 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 # Observation
 #
 . "$DIR/../observation/observation.sh"
+. "$DIR/../observation/queue.sh"
 
 #
 # Evidence

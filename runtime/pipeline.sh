@@ -15,7 +15,7 @@ runtime_pipeline_run() {
     echo ""
 
     #
-    # Inspection Phase
+    # Inspection
     #
     for inspector in $(inspector_registry_list)
     do
@@ -29,6 +29,11 @@ runtime_pipeline_run() {
     #
     evidence_pipeline_run
 
+    #
+    # Evidence → Relationship
+    #
+    relationship_builder_run
+
     echo ""
 
     #
@@ -39,15 +44,12 @@ runtime_pipeline_run() {
     #
     # Correlation
     #
-    # Temporary example relationship.
-    # Will be replaced by automatic relationship generation.
-    #
-    correlation_link "EV-000001" "influences" "EV-000002"
+    correlation_run
 
     #
     # Diagnosis
     #
-    diagnosis_analyze ""
+    diagnosis_analyze
 
     #
     # Report

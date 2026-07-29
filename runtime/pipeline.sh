@@ -14,9 +14,11 @@ runtime_pipeline_run() {
 
     echo ""
 
-    run_inspector cpu
-
-    echo ""
+    for inspector in $(inspector_registry_list)
+    do
+        run_inspector "$inspector"
+        echo ""
+    done
 
     validator_validate
 

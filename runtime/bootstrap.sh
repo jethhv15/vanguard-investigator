@@ -17,6 +17,11 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$DIR/inspector_manager.sh"
 
 #
+# SDK
+#
+. "$DIR/../sdk/inspector_sdk.sh"
+
+#
 # Evidence
 #
 . "$DIR/../evidence/model.sh"

@@ -2,35 +2,50 @@
 
 #
 # Vanguard Investigator
-# Relationship Rules
+# Relationship Rules Dispatcher
 #
 
 relationship_rule_apply() {
 
-    local source_metric="$1"
-    local target_metric="$2"
+    local source="$1"
+    local target="$2"
 
-    case "${source_metric}:${target_metric}" in
+    local relation
 
-        "Core Count:Online Cores")
+    relation=$(cpu_relationship_rule "$source" "$target")
 
-            echo "supports"
-            return
-            ;;
+    if [ -n "$relation" ]; then
+        echo "$relation"
+        return
+    fi
 
-        "CPU Frequency:Thermal State")
+    relation=$(memory_relationship_rule "$source" "$target")
 
-            echo "affects"
-            return
-            ;;
+    if [ -n "$relation" ]; then
+        echo "$relation"
+        return
+    fi
 
-        "Scheduler Latency:Frame Deadline")
+    relation=$(thermal_relationship_rule "$source" "$target")
 
-            echo "influences"
-            return
-            ;;
+    if [ -n "$relation" ]; then
+        echo "$relation"
+        return
+    fi
 
-    esac
+    relation=$(display_relationship_rule "$source" "$target")
+
+    if [ -n "$relation" ]; then
+        echo "$relation"
+        return
+    fi
+
+    relation=$(network_relationship_rule "$source" "$target")
+
+    if [ -n "$relation" ]; then
+        echo "$relation"
+        return
+    fi
 
     echo ""
 

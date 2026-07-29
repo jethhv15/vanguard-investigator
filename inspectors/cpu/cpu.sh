@@ -15,11 +15,15 @@ inspect() {
 
     echo "[CPU Inspector]"
 
-    echo ""
-
     echo "Hardware : $hardware"
 
     echo "Core Count : $cores"
+
+    create_evidence \
+        "CPU" \
+        "Hardware" \
+        "$hardware" \
+        "-"
 
     create_evidence \
         "CPU" \

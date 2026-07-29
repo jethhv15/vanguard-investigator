@@ -6,18 +6,25 @@
 
 inspect() {
 
+    local hardware
+    local cores
+
+    hardware=$(grep "Hardware" /proc/cpuinfo 2>/dev/null | cut -d':' -f2 | xargs)
+
+    cores=$(ls -d /sys/devices/system/cpu/cpu[0-9]* 2>/dev/null | wc -l)
+
     echo "[CPU Inspector]"
 
     echo ""
 
-    echo "Hardware"
+    echo "Hardware : $hardware"
 
-    grep "Hardware" /proc/cpuinfo 2>/dev/null
+    echo "Core Count : $cores"
 
-    echo ""
-
-    echo "Core Count"
-
-    ls -d /sys/devices/system/cpu/cpu[0-9]* 2>/dev/null | wc -l
+    create_evidence \
+        "CPU" \
+        "Core Count" \
+        "$cores" \
+        "cores"
 
 }

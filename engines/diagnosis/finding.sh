@@ -18,8 +18,9 @@ finding_add() {
     local title="$1"
     local severity="$2"
     local confidence="$3"
-    local source="$4"
-    local target="$5"
+    local root_cause="$4"
+    local source="$5"
+    local target="$6"
 
     FINDING_COUNT=$((FINDING_COUNT + 1))
 
@@ -31,6 +32,7 @@ finding_add() {
     eval "FINDING_${FINDING_COUNT}_TITLE=\"$title\""
     eval "FINDING_${FINDING_COUNT}_SEVERITY=\"$severity\""
     eval "FINDING_${FINDING_COUNT}_CONFIDENCE=\"$confidence\""
+    eval "FINDING_${FINDING_COUNT}_ROOT_CAUSE=\"$root_cause\""
     eval "FINDING_${FINDING_COUNT}_SOURCE=\"$source\""
     eval "FINDING_${FINDING_COUNT}_TARGET=\"$target\""
     eval "FINDING_${FINDING_COUNT}_STATUS=\"OPEN\""
@@ -65,6 +67,12 @@ finding_severity() {
 finding_confidence() {
 
     eval "echo \${FINDING_${1}_CONFIDENCE}"
+
+}
+
+finding_root_cause() {
+
+    eval "echo \${FINDING_${1}_ROOT_CAUSE}"
 
 }
 

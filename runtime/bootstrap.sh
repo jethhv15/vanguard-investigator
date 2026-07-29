@@ -21,6 +21,7 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$DIR/../engines/validator/validator.sh"
 . "$DIR/../engines/correlation/correlation.sh"
 . "$DIR/../engines/diagnosis/diagnosis.sh"
+. "$DIR/../engines/report/report.sh"
 
 runtime_init
 
@@ -31,6 +32,7 @@ runtime_start
 validator_init
 correlation_init
 diagnosis_init
+report_init
 
 echo ""
 
@@ -44,8 +46,11 @@ correlation_link "CPU Evidence" "Scheduler Evidence"
 
 diagnosis_analyze ""
 
+report_generate
+
 echo ""
 
+report_shutdown
 diagnosis_shutdown
 correlation_shutdown
 validator_shutdown

@@ -18,7 +18,6 @@ load_inspector() {
         echo "[Inspector] $inspector not found."
 
         return 1
-
     fi
 
     . "$path"
@@ -31,6 +30,14 @@ run_inspector() {
 
     load_inspector "$inspector" || return 1
 
+    inspector_metadata
+
+    inspector_init
+
     inspect
+
+    inspector_cleanup
+
+    inspector_shutdown
 
 }

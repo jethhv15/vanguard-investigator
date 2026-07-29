@@ -34,6 +34,7 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 #
 . "$DIR/../evidence/model.sh"
 . "$DIR/../evidence/evidence.sh"
+. "$DIR/../evidence/registry.sh"
 . "$DIR/../evidence/builder.sh"
 . "$DIR/../evidence/pipeline.sh"
 . "$DIR/../evidence/contract.sh"

@@ -15,6 +15,7 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$DIR/session_registry.sh"
 . "$DIR/dispatcher.sh"
 . "$DIR/inspector_manager.sh"
+. "$DIR/pipeline.sh"
 
 #
 # SDK
@@ -51,33 +52,11 @@ echo "[Session Registry] Started : $(session_registry_start_time)"
 
 echo ""
 
-validator_init
-correlation_init
-diagnosis_init
-report_init
-
-echo ""
-
-run_inspector cpu
-
-echo ""
-
-validator_validate
-
-correlation_link "CPU" "Scheduler"
-
-diagnosis_analyze ""
-
-report_generate
-
-echo ""
-
-report_shutdown
-diagnosis_shutdown
-correlation_shutdown
-validator_shutdown
+runtime_pipeline_run
 
 session_registry_finish
+
+echo ""
 
 echo "[Session Registry] Finished : $(session_registry_end_time)"
 echo "[Session Registry] Status   : $(session_registry_status)"

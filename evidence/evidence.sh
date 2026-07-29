@@ -2,37 +2,43 @@
 
 #
 # Vanguard Investigator
-# Evidence Foundation
+# Evidence Object
 #
-
-EVIDENCE_VERSION="1.0"
 
 create_evidence() {
 
-    local id="$1"
-    local subsystem="$2"
-    local metric="$3"
-    local value="$4"
-    local unit="$5"
+    local subsystem="$1"
+    local metric="$2"
+    local value="$3"
+    local unit="$4"
 
-    echo "{"
-    echo "  \"id\":\"$id\","
-    echo "  \"subsystem\":\"$subsystem\","
-    echo "  \"metric\":\"$metric\","
-    echo "  \"value\":\"$value\","
-    echo "  \"unit\":\"$unit\""
-    echo "}"
+    EVIDENCE_SUBSYSTEM="$subsystem"
+    EVIDENCE_METRIC="$metric"
+    EVIDENCE_VALUE="$value"
+    EVIDENCE_UNIT="$unit"
 
 }
 
-validate_evidence() {
+evidence_subsystem() {
 
-    echo "[Evidence] Validation Pending"
+    echo "$EVIDENCE_SUBSYSTEM"
 
 }
 
-save_evidence() {
+evidence_metric() {
 
-    echo "[Evidence] Storage Pending"
+    echo "$EVIDENCE_METRIC"
+
+}
+
+evidence_value() {
+
+    echo "$EVIDENCE_VALUE"
+
+}
+
+evidence_unit() {
+
+    echo "$EVIDENCE_UNIT"
 
 }

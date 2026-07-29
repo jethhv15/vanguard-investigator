@@ -57,6 +57,11 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$DIR/../rules/relationship_rules.sh"
 
 #
+# Diagnosis Rules
+#
+. "$DIR/../engines/diagnosis/rules.sh"
+
+#
 # Engines
 #
 . "$DIR/../engines/validator/validator.sh"

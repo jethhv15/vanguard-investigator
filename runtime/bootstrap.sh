@@ -61,6 +61,7 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 #
 . "$DIR/../engines/diagnosis/finding.sh"
 . "$DIR/../engines/diagnosis/severity.sh"
+. "$DIR/../engines/diagnosis/confidence.sh"
 . "$DIR/../engines/diagnosis/rules.sh"
 
 #

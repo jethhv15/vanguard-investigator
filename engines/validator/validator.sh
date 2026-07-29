@@ -13,9 +13,11 @@ validator_init() {
 
 validator_validate() {
 
-    local evidence="$1"
+    local subsystem
 
-    if [ -z "$evidence" ]; then
+    subsystem=$(evidence_subsystem)
+
+    if [ -z "$subsystem" ]; then
 
         echo "[Validator] Invalid Evidence"
 

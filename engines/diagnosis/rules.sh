@@ -11,29 +11,45 @@ diagnosis_rule_match() {
     local relation="$2"
     local target="$3"
 
+    local title=""
+    local severity=""
+
     case "${source}:${relation}:${target}" in
 
         *:"influences":"Frame Deadline")
 
-            finding_add \
-                "Frame Deadline Risk" \
-                "MEDIUM" \
-                "$source" \
-                "$target"
-
+            title="Frame Deadline Risk"
             ;;
 
         *:"affects":"Thermal State")
 
-            finding_add \
-                "Thermal Influence Detected" \
-                "LOW" \
-                "$source" \
-                "$target"
+            title="Thermal Influence Detected"
+            ;;
 
+        *:"blocks":"Input Pipeline")
+
+            title="Input Pipeline Blocked"
+            ;;
+
+        *:"causes":"Frame Drop")
+
+            title="Frame Drop Detected"
+            ;;
+
+        *)
+
+            return
             ;;
 
     esac
+
+    severity=$(severity_calculate "$relation")
+
+    finding_add \
+        "$title" \
+        "$severity" \
+        "$source" \
+        "$target"
 
 }
 

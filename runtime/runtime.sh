@@ -1,39 +1,36 @@
 #!/system/bin/sh
 
-#
-# Vanguard Investigator
-# Runtime Engine
-#
+DIR="$(cd "$(dirname "$0")" && pwd)"
 
-PROJECT_NAME="Vanguard Investigator"
-PROJECT_VERSION="0.1.0"
+. "$DIR/runtime.sh"
+. "$DIR/session.sh"
+. "$DIR/dispatcher.sh"
+. "$DIR/inspector_manager.sh"
 
-runtime_init() {
+. "$DIR/../engines/validator/validator.sh"
+. "$DIR/../engines/correlation/correlation.sh"
 
-    echo ""
-    echo "=========================================="
-    echo "$PROJECT_NAME"
-    echo "Android Performance Inspection Framework"
-    echo "Version $PROJECT_VERSION"
-    echo "=========================================="
-    echo ""
+runtime_init
 
-}
+session_create
 
-runtime_start() {
+runtime_start
 
-    echo "[Runtime] Starting Investigation..."
+validator_init
+correlation_init
 
-}
+echo ""
 
-runtime_finish() {
+run_inspector cpu
 
-    echo "[Runtime] Investigation Finished."
+validator_validate "CPU Evidence"
 
-}
+correlation_link "CPU Evidence" "Scheduler Evidence"
 
-runtime_shutdown() {
+echo ""
 
-    echo "[Runtime] Shutdown."
+correlation_shutdown
+validator_shutdown
 
-}
+runtime_finish
+runtime_shutdown

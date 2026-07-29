@@ -72,7 +72,7 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$DIR/../engines/correlation/correlation.sh"
 . "$DIR/../engines/diagnosis/diagnosis.sh"
 . "$DIR/../engines/report/report.sh"
-
+. "$DIR/../engines/report/export.sh"
 #
 # Initialize
 #

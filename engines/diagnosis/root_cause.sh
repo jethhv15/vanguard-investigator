@@ -18,15 +18,15 @@ root_cause_calculate() {
             ;;
 
         thermal:*:*)
-            echo "Thermal Limitation"
-            ;;
-
-        binder:*:*)
-            echo "Binder Transaction Delay"
+            echo "Thermal Throttling"
             ;;
 
         memory:*:*)
             echo "Memory Pressure"
+            ;;
+
+        binder:*:*)
+            echo "Binder Transaction Delay"
             ;;
 
         renderthread:*:*)
@@ -34,7 +34,7 @@ root_cause_calculate() {
             ;;
 
         surfaceflinger:*:*)
-            echo "SurfaceFlinger Synchronization"
+            echo "SurfaceFlinger Synchronization Delay"
             ;;
 
         frame.timeline:*:*)
@@ -47,6 +47,10 @@ root_cause_calculate() {
 
         network:*:*)
             echo "Network Processing Delay"
+            ;;
+
+        display:*:*)
+            echo "Display Pipeline Delay"
             ;;
 
         *)

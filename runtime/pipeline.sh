@@ -19,15 +19,13 @@ runtime_pipeline_run() {
     #
     for inspector in $(inspector_registry_list)
     do
-
         run_inspector "$inspector"
-
     done
 
     echo ""
 
     #
-    # Observation -> Evidence
+    # Observation → Evidence
     #
     evidence_pipeline_run
 
@@ -41,7 +39,11 @@ runtime_pipeline_run() {
     #
     # Correlation
     #
-    correlation_link "CPU:Core Count" "influences" "CPU:Scheduling"
+    # Temporary example relationship.
+    # Will be replaced by automatic relationship generation.
+    #
+    correlation_link "EV-000001" "influences" "EV-000002"
+
     #
     # Diagnosis
     #

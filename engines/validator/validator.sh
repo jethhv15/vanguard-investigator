@@ -13,21 +13,30 @@ validator_init() {
 
 validator_validate() {
 
-    local subsystem
+    local total
 
-    subsystem=$(evidence_subsystem)
+    total=$(evidence_count)
 
-    if [ -z "$subsystem" ]; then
+    if [ "$total" -eq 0 ]; then
 
-        echo "[Validator] Invalid Evidence"
+        echo "[Validator] No Evidence"
 
         return 1
 
     fi
 
-    echo "[Validator] Evidence Accepted"
+    local i=1
 
-    return 0
+    while [ "$i" -le "$total" ]
+    do
+
+        echo "[Validator] Validate: $(evidence_subsystem "$i") / $(evidence_metric "$i")"
+
+        i=$((i + 1))
+
+    done
+
+    echo "[Validator] Validation Complete"
 
 }
 

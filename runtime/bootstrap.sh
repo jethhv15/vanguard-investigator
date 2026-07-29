@@ -37,6 +37,7 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$DIR/../evidence/registry.sh"
 . "$DIR/../evidence/link.sh"
 . "$DIR/../evidence/link_registry.sh"
+. "$DIR/../evidence/identity.sh"
 . "$DIR/../evidence/builder.sh"
 . "$DIR/../evidence/pipeline.sh"
 . "$DIR/../evidence/contract.sh"
@@ -49,6 +50,7 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$DIR/../engines/diagnosis/diagnosis.sh"
 . "$DIR/../engines/report/report.sh"
 
+evidence_identity_reset
 evidence_model_reset
 
 runtime_init

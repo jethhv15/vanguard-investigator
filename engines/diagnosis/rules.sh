@@ -15,9 +15,9 @@ diagnosis_rule_match() {
 
         *:"influences":"Frame Deadline")
 
-            diagnosis_rule_emit \
+            finding_add \
                 "Frame Deadline Risk" \
-                "Medium" \
+                "MEDIUM" \
                 "$source" \
                 "$target"
 
@@ -25,9 +25,9 @@ diagnosis_rule_match() {
 
         *:"affects":"Thermal State")
 
-            diagnosis_rule_emit \
+            finding_add \
                 "Thermal Influence Detected" \
-                "Low" \
+                "LOW" \
                 "$source" \
                 "$target"
 
@@ -39,15 +39,26 @@ diagnosis_rule_match() {
 
 diagnosis_rule_emit() {
 
-    local finding="$1"
-    local severity="$2"
-    local source="$3"
-    local target="$4"
+    local total
+    local i
 
-    echo "[Finding] ${finding}"
-    echo "[Severity] ${severity}"
-    echo "[Cause] ${source}"
-    echo "[Impact] ${target}"
-    echo ""
+    total=$(finding_count)
+
+    i=1
+
+    while [ "$i" -le "$total" ]
+    do
+
+        echo "[Finding] $(finding_id "$i")"
+        echo "Title      : $(finding_title "$i")"
+        echo "Severity   : $(finding_severity "$i")"
+        echo "Source     : $(finding_source "$i")"
+        echo "Target     : $(finding_target "$i")"
+        echo "Status     : $(finding_status "$i")"
+        echo ""
+
+        i=$((i + 1))
+
+    done
 
 }

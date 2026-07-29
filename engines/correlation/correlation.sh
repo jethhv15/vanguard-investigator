@@ -11,15 +11,13 @@ correlation_init() {
 
 }
 
-correlation_link() {
+correlation_run() {
 
-    local source_id="$1"
-    local relation="$2"
-    local target_id="$3"
+    local total
 
-    evidence_link_add "$source_id" "$relation" "$target_id"
+    total=$(relationship_registry_count)
 
-    echo "[Correlation] ${source_id} --(${relation})--> ${target_id}"
+    echo "[Correlation] Relationships : $total"
 
 }
 

@@ -44,6 +44,11 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$DIR/../evidence/contract.sh"
 
 #
+# Rules
+#
+. "$DIR/../rules/relationship_rules.sh"
+
+#
 # Engines
 #
 . "$DIR/../engines/validator/validator.sh"

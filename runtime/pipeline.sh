@@ -15,7 +15,7 @@ runtime_pipeline_run() {
     echo ""
 
     #
-    # Inspection
+    # Inspection Phase
     #
     for inspector in $(inspector_registry_list)
     do
@@ -30,9 +30,19 @@ runtime_pipeline_run() {
     evidence_pipeline_run
 
     #
+    # Build Evidence Index
+    #
+    evidence_index_build
+
+    #
     # Evidence → Relationship
     #
     relationship_builder_run
+
+    #
+    # Relationship → Evidence Graph
+    #
+    evidence_graph_build
 
     echo ""
 

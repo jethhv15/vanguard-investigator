@@ -15,6 +15,7 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$DIR/session_registry.sh"
 . "$DIR/dispatcher.sh"
 . "$DIR/inspector_manager.sh"
+. "$DIR/inspector_registry.sh"
 . "$DIR/pipeline.sh"
 
 #

@@ -2,8 +2,10 @@
 
 #
 # Vanguard Investigator
-# Evidence Object
+# Evidence Registry
 #
+
+EVIDENCE_COUNT=0
 
 create_evidence() {
 
@@ -12,29 +14,52 @@ create_evidence() {
     local value="$3"
     local unit="$4"
 
-    EVIDENCE_SUBSYSTEM="$subsystem"
-    EVIDENCE_METRIC="$metric"
-    EVIDENCE_VALUE="$value"
-    EVIDENCE_UNIT="$unit"
+    EVIDENCE_COUNT=$((EVIDENCE_COUNT + 1))
+
+    eval "EVIDENCE_${EVIDENCE_COUNT}_SUBSYSTEM='$subsystem'"
+    eval "EVIDENCE_${EVIDENCE_COUNT}_METRIC='$metric'"
+    eval "EVIDENCE_${EVIDENCE_COUNT}_VALUE='$value'"
+    eval "EVIDENCE_${EVIDENCE_COUNT}_UNIT='$unit'"
+
+}
+
+evidence_count() {
+
+    echo "$EVIDENCE_COUNT"
 
 }
 
 evidence_subsystem() {
 
-    echo "$EVIDENCE_SUBSYSTEM"
+    local index="$1"
+
+    eval "echo \${EVIDENCE_${index}_SUBSYSTEM}"
 
 }
 
 evidence_metric() {
 
-    echo "$EVIDENCE_METRIC"
+    local index="$1"
+
+    eval "echo \${EVIDENCE_${index}_METRIC}"
 
 }
 
 evidence_value() {
 
-    echo "$EVIDENCE_VALUE"
+    local index="$1"
 
+    eval "echo \${EVIDENCE_${index}_VALUE}"
+
+}
+
+evidence_unit() {
+
+    local index="$1"
+
+    eval "echo \${EVIDENCE_${index}_UNIT}"
+
+}
 }
 
 evidence_unit() {

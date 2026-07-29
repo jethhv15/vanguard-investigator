@@ -14,18 +14,43 @@ runtime_pipeline_run() {
 
     echo ""
 
+    #
+    # Inspection Phase
+    #
     for inspector in $(inspector_registry_list)
     do
+
         run_inspector "$inspector"
-        echo ""
+
     done
 
+    echo ""
+
+    #
+    # Observation -> Evidence
+    #
+    evidence_pipeline_run
+
+    echo ""
+
+    #
+    # Validation
+    #
     validator_validate
 
+    #
+    # Correlation
+    #
     correlation_link "CPU" "Scheduler"
 
+    #
+    # Diagnosis
+    #
     diagnosis_analyze ""
 
+    #
+    # Report
+    #
     report_generate
 
     echo ""

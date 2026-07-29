@@ -1,14 +1,11 @@
 #!/system/bin/sh
 
-#
-# Bootstrap
-#
-
 DIR="$(cd "$(dirname "$0")" && pwd)"
 
 . "$DIR/runtime.sh"
 . "$DIR/session.sh"
 . "$DIR/dispatcher.sh"
+. "$DIR/inspector_manager.sh"
 
 runtime_init
 
@@ -18,7 +15,7 @@ runtime_start
 
 echo ""
 
-echo "[Bootstrap] Ready."
+run_inspector cpu
 
 echo ""
 

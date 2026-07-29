@@ -34,15 +34,17 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 #
 . "$DIR/../evidence/model.sh"
 . "$DIR/../evidence/evidence.sh"
+. "$DIR/../evidence/identity.sh"
 . "$DIR/../evidence/registry.sh"
+. "$DIR/../evidence/index.sh"
 . "$DIR/../evidence/link.sh"
 . "$DIR/../evidence/link_registry.sh"
-. "$DIR/../evidence/identity.sh"
+. "$DIR/../evidence/graph.sh"
+. "$DIR/../evidence/traversal.sh"
 . "$DIR/../evidence/builder.sh"
 . "$DIR/../evidence/pipeline.sh"
 . "$DIR/../evidence/relationship_builder.sh"
 . "$DIR/../evidence/contract.sh"
-. "$DIR/../evidence/index.sh"
 
 #
 # Rules
@@ -62,8 +64,12 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$DIR/../engines/diagnosis/diagnosis.sh"
 . "$DIR/../engines/report/report.sh"
 
+#
+# Initialize
+#
 evidence_identity_reset
 evidence_model_reset
+evidence_graph_reset
 
 runtime_init
 

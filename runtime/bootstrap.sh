@@ -16,6 +16,11 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$DIR/inspector_manager.sh"
 
 #
+# Evidence
+#
+. "$DIR/../evidence/evidence.sh"
+
+#
 # Engines
 #
 . "$DIR/../engines/validator/validator.sh"
@@ -40,9 +45,11 @@ run_inspector cpu
 
 echo ""
 
-validator_validate "CPU Evidence"
+validator_validate
 
-correlation_link "CPU Evidence" "Scheduler Evidence"
+correlation_link \
+    "$(evidence_subsystem)" \
+    "Scheduler"
 
 diagnosis_analyze ""
 

@@ -19,6 +19,7 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 # Evidence
 #
 . "$DIR/../evidence/evidence.sh"
+. "$DIR/../evidence/contract.sh"
 
 #
 # Engines

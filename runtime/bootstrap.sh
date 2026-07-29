@@ -57,8 +57,9 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$DIR/../rules/relationship_rules.sh"
 
 #
-# Diagnosis Rules
+# Diagnosis
 #
+. "$DIR/../engines/diagnosis/finding.sh"
 . "$DIR/../engines/diagnosis/rules.sh"
 
 #
@@ -75,6 +76,7 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 evidence_identity_reset
 evidence_model_reset
 evidence_graph_reset
+finding_reset
 
 runtime_init
 

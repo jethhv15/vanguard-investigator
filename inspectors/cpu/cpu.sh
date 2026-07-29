@@ -30,23 +30,21 @@ inspect() {
     echo "Hardware   : $hardware"
     echo "Core Count : $cores"
 
-    evidence_begin
+    observation_begin
+    observation_set subsystem "CPU"
+    observation_set metric "Hardware"
+    observation_set value "$hardware"
+    observation_set unit "-"
+    observation_commit
+    build_evidence
 
-    evidence_set subsystem "CPU"
-    evidence_set metric "Hardware"
-    evidence_set value "$hardware"
-    evidence_set unit "-"
-
-    evidence_commit
-
-    evidence_begin
-
-    evidence_set subsystem "CPU"
-    evidence_set metric "Core Count"
-    evidence_set value "$cores"
-    evidence_set unit "cores"
-
-    evidence_commit
+    observation_begin
+    observation_set subsystem "CPU"
+    observation_set metric "Core Count"
+    observation_set value "$cores"
+    observation_set unit "cores"
+    observation_commit
+    build_evidence
 
 }
 

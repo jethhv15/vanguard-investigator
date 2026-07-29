@@ -5,52 +5,59 @@
 # Report Engine
 #
 
-report_init() {
+report_session() {
 
-    echo "[Report] Initialized"
+    echo ""
+    echo "[SESSION]"
+
+    echo "ID        : $(session_registry_id)"
+    echo "STATUS    : $(session_registry_status)"
+    echo "STARTED   : $(session_registry_start_time)"
+    echo "FINISHED  : $(session_registry_end_time)"
 
 }
 
-report_generate() {
+report_findings() {
+
+    echo ""
+    echo "[FINDINGS]"
 
     local total
     local i
 
     total=$(finding_count)
 
-    echo ""
-    echo "========================================"
-    echo " Vanguard Investigation Report"
-    echo "========================================"
-    echo ""
-
-    echo "Total Findings : $total"
-    echo ""
+    if [ "$total" -eq 0 ]; then
+        echo "No Findings."
+        return
+    fi
 
     i=1
 
     while [ "$i" -le "$total" ]
     do
 
-        echo "Finding ID : $(finding_id "$i")"
-        echo "Title      : $(finding_title "$i")"
-        echo "Severity   : $(finding_severity "$i")"
-        echo "Source     : $(finding_source "$i")"
-        echo "Target     : $(finding_target "$i")"
-        echo "Status     : $(finding_status "$i")"
-
         echo ""
+        echo "Finding     : $(finding_id "$i")"
+        echo "Title       : $(finding_title "$i")"
+        echo "Severity    : $(finding_severity "$i")"
+        echo "Confidence  : $(finding_confidence "$i")%"
+        echo "Root Cause  : $(finding_root_cause "$i")"
+        echo "Source      : $(finding_source "$i")"
+        echo "Target      : $(finding_target "$i")"
+        echo "Status      : $(finding_status "$i")"
 
         i=$((i + 1))
 
     done
 
-    echo "========================================"
-
 }
 
-report_shutdown() {
+report_summary() {
 
-    echo "[Report] Shutdown"
+    echo ""
+    echo "[SUMMARY]"
+
+    echo "Total Findings : $(finding_count)"
 
 }

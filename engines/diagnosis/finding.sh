@@ -32,6 +32,7 @@ finding_add() {
     eval "FINDING_${FINDING_COUNT}_SOURCE=\"$source\""
     eval "FINDING_${FINDING_COUNT}_TARGET=\"$target\""
     eval "FINDING_${FINDING_COUNT}_STATUS=\"OPEN\""
+    eval "FINDING_${FINDING_COUNT}_TIMESTAMP=\"$(date '+%Y-%m-%d %H:%M:%S')\""
 
 }
 
@@ -74,5 +75,11 @@ finding_target() {
 finding_status() {
 
     eval "echo \${FINDING_${1}_STATUS}"
+
+}
+
+finding_timestamp() {
+
+    eval "echo \${FINDING_${1}_TIMESTAMP}"
 
 }

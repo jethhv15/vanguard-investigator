@@ -13,17 +13,36 @@ diagnosis_init() {
 
 diagnosis_analyze() {
 
-    local finding="$1"
+    local total
+    local i
 
-    if [ -z "$finding" ]; then
+    total=$(evidence_graph_count)
 
-        echo "[Diagnosis] No Finding"
+    echo "[Diagnosis] Analyzing Evidence Graph..."
 
-        return 0
+    i=1
 
-    fi
+    while [ "$i" -le "$total" ]
+    do
 
-    echo "[Diagnosis] Finding: $finding"
+        local source
+        local relation
+        local target
+
+        source=$(evidence_graph_source "$i")
+        relation=$(evidence_graph_relation "$i")
+        target=$(evidence_graph_target "$i")
+
+        diagnosis_rule_match \
+            "$source" \
+            "$relation" \
+            "$target"
+
+        i=$((i + 1))
+
+    done
+
+    echo "[Diagnosis] Analysis Complete"
 
 }
 

@@ -47,9 +47,7 @@ echo ""
 
 validator_validate
 
-correlation_link \
-    "$(evidence_subsystem)" \
-    "Scheduler"
+correlation_link "CPU" "Scheduler"
 
 diagnosis_analyze ""
 

@@ -13,6 +13,7 @@ diagnosis_rule_match() {
 
     local title=""
     local severity=""
+    local confidence=""
 
     case "${source}:${relation}:${target}" in
 
@@ -44,10 +45,12 @@ diagnosis_rule_match() {
     esac
 
     severity=$(severity_calculate "$relation")
+    confidence=$(confidence_calculate "$relation")
 
     finding_add \
         "$title" \
         "$severity" \
+        "$confidence" \
         "$source" \
         "$target"
 
@@ -66,11 +69,13 @@ diagnosis_rule_emit() {
     do
 
         echo "[Finding] $(finding_id "$i")"
-        echo "Title      : $(finding_title "$i")"
-        echo "Severity   : $(finding_severity "$i")"
-        echo "Source     : $(finding_source "$i")"
-        echo "Target     : $(finding_target "$i")"
-        echo "Status     : $(finding_status "$i")"
+        echo "Title       : $(finding_title "$i")"
+        echo "Severity    : $(finding_severity "$i")"
+        echo "Confidence  : $(finding_confidence "$i")%"
+        echo "Level       : $(confidence_level "$(finding_confidence "$i")")"
+        echo "Source      : $(finding_source "$i")"
+        echo "Target      : $(finding_target "$i")"
+        echo "Status      : $(finding_status "$i")"
         echo ""
 
         i=$((i + 1))

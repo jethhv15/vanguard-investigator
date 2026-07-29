@@ -40,6 +40,7 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$DIR/../evidence/identity.sh"
 . "$DIR/../evidence/builder.sh"
 . "$DIR/../evidence/pipeline.sh"
+. "$DIR/../evidence/relationship_builder.sh"
 . "$DIR/../evidence/contract.sh"
 
 #

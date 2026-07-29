@@ -5,14 +5,11 @@
 # Evidence Builder API
 #
 
-EVIDENCE_COUNT=0
+CURRENT_EVIDENCE_ID=""
 
 evidence_begin() {
 
-    EVIDENCE_SUBSYSTEM=""
-    EVIDENCE_METRIC=""
-    EVIDENCE_VALUE=""
-    EVIDENCE_UNIT=""
+    CURRENT_EVIDENCE_ID=$(evidence_model_create)
 
 }
 
@@ -21,73 +18,42 @@ evidence_set() {
     local key="$1"
     local value="$2"
 
-    case "$key" in
-
-        subsystem)
-            EVIDENCE_SUBSYSTEM="$value"
-            ;;
-
-        metric)
-            EVIDENCE_METRIC="$value"
-            ;;
-
-        value)
-            EVIDENCE_VALUE="$value"
-            ;;
-
-        unit)
-            EVIDENCE_UNIT="$value"
-            ;;
-
-    esac
+    evidence_model_set "$CURRENT_EVIDENCE_ID" "$key" "$value"
 
 }
 
 evidence_commit() {
 
-    EVIDENCE_COUNT=$((EVIDENCE_COUNT + 1))
-
-    eval "EVIDENCE_${EVIDENCE_COUNT}_SUBSYSTEM=\"\$EVIDENCE_SUBSYSTEM\""
-    eval "EVIDENCE_${EVIDENCE_COUNT}_METRIC=\"\$EVIDENCE_METRIC\""
-    eval "EVIDENCE_${EVIDENCE_COUNT}_VALUE=\"\$EVIDENCE_VALUE\""
-    eval "EVIDENCE_${EVIDENCE_COUNT}_UNIT=\"\$EVIDENCE_UNIT\""
+    return 0
 
 }
 
 evidence_count() {
 
-    echo "$EVIDENCE_COUNT"
+    evidence_model_count
 
 }
 
 evidence_subsystem() {
 
-    local index="$1"
-
-    eval "echo \${EVIDENCE_${index}_SUBSYSTEM}"
+    evidence_model_get "$1" subsystem
 
 }
 
 evidence_metric() {
 
-    local index="$1"
-
-    eval "echo \${EVIDENCE_${index}_METRIC}"
+    evidence_model_get "$1" metric
 
 }
 
 evidence_value() {
 
-    local index="$1"
-
-    eval "echo \${EVIDENCE_${index}_VALUE}"
+    evidence_model_get "$1" value
 
 }
 
 evidence_unit() {
 
-    local index="$1"
-
-    eval "echo \${EVIDENCE_${index}_UNIT}"
+    evidence_model_get "$1" unit
 
 }

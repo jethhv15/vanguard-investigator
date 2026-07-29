@@ -13,13 +13,13 @@ correlation_init() {
 
 correlation_link() {
 
-    local source="$1"
+    local source_id="$1"
     local relation="$2"
-    local target="$3"
+    local target_id="$3"
 
-    evidence_link_add "$source" "$relation" "$target"
+    evidence_link_add "$source_id" "$relation" "$target_id"
 
-    echo "[Correlation] $source --($relation)--> $target"
+    echo "[Correlation] ${source_id} --(${relation})--> ${target_id}"
 
 }
 

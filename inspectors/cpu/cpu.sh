@@ -36,7 +36,6 @@ inspect() {
     observation_set value "$hardware"
     observation_set unit "-"
     observation_commit
-    build_evidence
 
     observation_begin
     observation_set subsystem "CPU"
@@ -44,7 +43,6 @@ inspect() {
     observation_set value "$cores"
     observation_set unit "cores"
     observation_commit
-    build_evidence
 
 }
 

@@ -4,8 +4,16 @@
 # Investigation Session
 #
 
-create_session() {
+SESSION_ID=""
+SESSION_TIME=""
 
-    echo "[Session] New Investigation Session"
+session_create() {
+
+    SESSION_ID=$(date +%s)
+
+    SESSION_TIME=$(date)
+
+    echo "[Session] ID : $SESSION_ID"
+    echo "[Session] Time : $SESSION_TIME"
 
 }

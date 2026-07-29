@@ -26,52 +26,16 @@ observation_set() {
 
     case "$key" in
 
-        subsystem)
-            OBSERVATION_SUBSYSTEM="$value"
-            ;;
-
-        metric)
-            OBSERVATION_METRIC="$value"
-            ;;
-
-        value)
-            OBSERVATION_VALUE="$value"
-            ;;
-
-        unit)
-            OBSERVATION_UNIT="$value"
-            ;;
-
+        subsystem) OBSERVATION_SUBSYSTEM="$value" ;;
+        metric) OBSERVATION_METRIC="$value" ;;
+        value) OBSERVATION_VALUE="$value" ;;
+        unit) OBSERVATION_UNIT="$value" ;;
     esac
 
 }
 
 observation_commit() {
 
-    return 0
-
-}
-
-observation_subsystem() {
-
-    echo "$OBSERVATION_SUBSYSTEM"
-
-}
-
-observation_metric() {
-
-    echo "$OBSERVATION_METRIC"
-
-}
-
-observation_value() {
-
-    echo "$OBSERVATION_VALUE"
-
-}
-
-observation_unit() {
-
-    echo "$OBSERVATION_UNIT"
+    observation_queue_push
 
 }

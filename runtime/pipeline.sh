@@ -41,8 +41,7 @@ runtime_pipeline_run() {
     #
     # Correlation
     #
-    correlation_link "CPU" "Scheduler"
-
+    correlation_link "CPU:Core Count" "influences" "CPU:Scheduling"
     #
     # Diagnosis
     #

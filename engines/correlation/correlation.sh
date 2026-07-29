@@ -35,6 +35,10 @@ correlation_run() {
 
         echo "[Correlation] ${source} --(${relation})--> ${target}"
 
+        echo "[Correlation] Traversal"
+
+        evidence_traversal_walk "$source"
+
         i=$((i + 1))
 
     done

@@ -46,6 +46,11 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 #
 # Rules
 #
+. "$DIR/../rules/cpu.rules.sh"
+. "$DIR/../rules/memory.rules.sh"
+. "$DIR/../rules/thermal.rules.sh"
+. "$DIR/../rules/display.rules.sh"
+. "$DIR/../rules/network.rules.sh"
 . "$DIR/../rules/relationship_rules.sh"
 
 #

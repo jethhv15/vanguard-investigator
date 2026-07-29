@@ -16,19 +16,24 @@ inspect() {
     echo "[CPU Inspector]"
 
     echo "Hardware : $hardware"
-
     echo "Core Count : $cores"
 
-    create_evidence \
-        "CPU" \
-        "Hardware" \
-        "$hardware" \
-        "-"
+    evidence_begin
 
-    create_evidence \
-        "CPU" \
-        "Core Count" \
-        "$cores" \
-        "cores"
+    evidence_set subsystem "CPU"
+    evidence_set metric "Hardware"
+    evidence_set value "$hardware"
+    evidence_set unit "-"
+
+    evidence_commit
+
+    evidence_begin
+
+    evidence_set subsystem "CPU"
+    evidence_set metric "Core Count"
+    evidence_set value "$cores"
+    evidence_set unit "cores"
+
+    evidence_commit
 
 }

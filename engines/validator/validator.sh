@@ -15,7 +15,7 @@ validator_validate() {
 
     local total
 
-    total=$(evidence_count)
+    total=$(evidence_registry_count)
 
     if [ "$total" -eq 0 ]; then
 
@@ -35,10 +35,10 @@ validator_validate() {
         local value
         local unit
 
-        subsystem=$(evidence_subsystem "$i")
-        metric=$(evidence_metric "$i")
-        value=$(evidence_value "$i")
-        unit=$(evidence_unit "$i")
+        subsystem=$(evidence_registry_get_subsystem "$i")
+        metric=$(evidence_registry_get_metric "$i")
+        value=$(evidence_registry_get_value "$i")
+        unit=$(evidence_registry_get_unit "$i")
 
         if [ -z "$subsystem" ] ||
            [ -z "$metric" ] ||
@@ -61,6 +61,7 @@ validator_validate() {
     echo "[Validator] Validation Complete"
 
 }
+
 validator_shutdown() {
 
     echo "[Validator] Shutdown"

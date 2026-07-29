@@ -60,10 +60,3 @@ evidence_unit() {
     eval "echo \${EVIDENCE_${index}_UNIT}"
 
 }
-}
-
-evidence_unit() {
-
-    echo "$EVIDENCE_UNIT"
-
-}

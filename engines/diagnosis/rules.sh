@@ -14,6 +14,7 @@ diagnosis_rule_match() {
     local title=""
     local severity=""
     local confidence=""
+    local root_cause=""
 
     case "${source}:${relation}:${target}" in
 
@@ -46,11 +47,13 @@ diagnosis_rule_match() {
 
     severity=$(severity_calculate "$relation")
     confidence=$(confidence_calculate "$relation")
+    root_cause=$(root_cause_calculate "$source" "$relation" "$target")
 
     finding_add \
         "$title" \
         "$severity" \
         "$confidence" \
+        "$root_cause" \
         "$source" \
         "$target"
 
@@ -73,6 +76,7 @@ diagnosis_rule_emit() {
         echo "Severity    : $(finding_severity "$i")"
         echo "Confidence  : $(finding_confidence "$i")%"
         echo "Level       : $(confidence_level "$(finding_confidence "$i")")"
+        echo "Root Cause  : $(finding_root_cause "$i")"
         echo "Source      : $(finding_source "$i")"
         echo "Target      : $(finding_target "$i")"
         echo "Status      : $(finding_status "$i")"

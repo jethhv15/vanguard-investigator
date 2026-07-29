@@ -30,7 +30,29 @@ validator_validate() {
     while [ "$i" -le "$total" ]
     do
 
-        echo "[Validator] Validate: $(evidence_subsystem "$i") / $(evidence_metric "$i")"
+        local subsystem
+        local metric
+        local value
+        local unit
+
+        subsystem=$(evidence_subsystem "$i")
+        metric=$(evidence_metric "$i")
+        value=$(evidence_value "$i")
+        unit=$(evidence_unit "$i")
+
+        if [ -z "$subsystem" ] ||
+           [ -z "$metric" ] ||
+           [ -z "$value" ] ||
+           [ -z "$unit" ]; then
+
+            echo "[Validator] Invalid Evidence #$i"
+
+            i=$((i + 1))
+            continue
+
+        fi
+
+        echo "[Validator] OK : $subsystem / $metric"
 
         i=$((i + 1))
 
@@ -39,7 +61,6 @@ validator_validate() {
     echo "[Validator] Validation Complete"
 
 }
-
 validator_shutdown() {
 
     echo "[Validator] Shutdown"

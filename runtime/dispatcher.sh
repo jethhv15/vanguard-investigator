@@ -1,11 +1,13 @@
 #!/system/bin/sh
 
 #
-# Dispatcher
+# Runtime Dispatcher
 #
 
-dispatch() {
+dispatch_inspector() {
 
-    echo "[Dispatcher] Waiting Investigation Request"
+    local inspector="$1"
+
+    echo "[Dispatcher] Running $inspector"
 
 }

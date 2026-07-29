@@ -14,10 +14,30 @@ correlation_init() {
 correlation_run() {
 
     local total
+    local i
 
-    total=$(relationship_registry_count)
+    total=$(evidence_graph_count)
 
-    echo "[Correlation] Relationships : $total"
+    echo "[Correlation] Graph Nodes : $total"
+
+    i=1
+
+    while [ "$i" -le "$total" ]
+    do
+
+        local source
+        local relation
+        local target
+
+        source=$(evidence_graph_source "$i")
+        relation=$(evidence_graph_relation "$i")
+        target=$(evidence_graph_target "$i")
+
+        echo "[Correlation] ${source} --(${relation})--> ${target}"
+
+        i=$((i + 1))
+
+    done
 
 }
 

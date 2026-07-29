@@ -7,18 +7,13 @@
 
 build_evidence() {
 
-    local subsystem="$1"
-    local metric="$2"
-    local value="$3"
-    local unit="$4"
+    evidence_begin
 
-    cat <<EOF
-{
-    "subsystem":"$subsystem",
-    "metric":"$metric",
-    "value":"$value",
-    "unit":"$unit"
-}
-EOF
+    evidence_set subsystem "$(observation_subsystem)"
+    evidence_set metric "$(observation_metric)"
+    evidence_set value "$(observation_value)"
+    evidence_set unit "$(observation_unit)"
+
+    evidence_commit
 
 }

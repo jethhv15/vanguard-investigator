@@ -24,10 +24,16 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$DIR/../sdk/inspector_sdk.sh"
 
 #
+# Observation
+#
+. "$DIR/../observation/observation.sh"
+
+#
 # Evidence
 #
 . "$DIR/../evidence/model.sh"
 . "$DIR/../evidence/evidence.sh"
+. "$DIR/../evidence/builder.sh"
 . "$DIR/../evidence/contract.sh"
 
 #
